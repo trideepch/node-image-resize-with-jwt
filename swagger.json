@@ -1,0 +1,256 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "Swagger Image resize",
+        "description": "",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "email": "apiteam@swagger.io"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "externalDocs": {
+        "description": "Find out more about Swagger",
+        "url": "http://swagger.io"
+    },
+    "servers": [{
+        "url": "http://localhost:5000/api/v1/"
+    }],
+    "paths": {
+        "/users": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Registers user into the system",
+                "parameters": [{
+                        "name": "name",
+                        "in": "body",
+                        "description": "The name of new user",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }, {
+                        "name": "email",
+                        "in": "body",
+                        "description": "The email of new user",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "password",
+                        "in": "body",
+                        "description": "The password of new user",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "registration success",
+                        "content": {}
+                    },
+                    "400": {
+                        "description": "user exists",
+                        "content": {}
+                    }
+                }
+            }
+        },
+        "/users/login": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Logs user into the system",
+                "parameters": [{
+                        "name": "email",
+                        "in": "body",
+                        "description": "The user name for login",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "password",
+                        "in": "body",
+                        "description": "The password for login in clear text",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "login success",
+                        "content": {}
+                    },
+                    "401": {
+                        "description": "Auth Error",
+                        "content": {}
+                    },
+                    "404": {
+                        "description": "User Not Found",
+                        "content": {}
+                    },
+                    "500": {
+                        "description": "Server Error",
+                        "content": {}
+                    }
+                }
+            }
+        },
+        "/users/all": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Get all users",
+                "responses": {
+                    "200": {
+                        "description": "login success",
+                        "content": {}
+                    },
+                    "500": {
+                        "description": "Server Error",
+                        "content": {}
+                    }
+                },
+                "security": []
+            }
+        },
+        "/images/upload": {
+            "post": {
+                "tags": [
+                    "Image"
+                ],
+                "summary": "Get all users",
+                "consumes": ["multipart/form-data"],
+                "parameters": [{
+                        "name": "authorization",
+                        "in": "headers",
+                        "description": "auth token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "img",
+                        "in": "formData",
+                        "description": "The file to upload.",
+                        "required": true,
+                        "schema": {
+                            "type": "file"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "upload success",
+                        "content": {}
+                    },
+                    "400": {
+                        "description": "Upload Error/File format not supported",
+                        "content": {}
+                    }
+                }
+            }
+        },
+        "/images/download": {
+            "get": {
+                "tags": [
+                    "Image"
+                ],
+                "summary": "Get image status or downlaod image",
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {}
+                    },
+                    "400": {
+                        "description": "resource_id is required",
+                        "content": {}
+                    }
+                }
+            }
+        },
+        "/images/all": {
+            "get": {
+                "tags": [
+                    "Image"
+                ],
+                "summary": "Get all images for a user",
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {}
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "User": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    }
+                },
+                "xml": {
+                    "name": "User"
+                }
+            },
+            "Image": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "path": {
+                        "type": "string"
+                    },
+                    "user": {
+                        "type": "string"
+                    },
+                    "resource_id": {
+                        "type": "string"
+                    },
+                    "processed": {
+                        "type": "boolean"
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "Image resize status",
+                        "enum": ["PENDING", "PROCESSING", "ERROR", "COMPLETE"]
+                    },
+                    "thumbnail_path": {
+                        "type": "string"
+                    }
+                },
+                "xml": {
+                    "name": "Image"
+                }
+            }
+        }
+    }
+}
