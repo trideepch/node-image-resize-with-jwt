@@ -33,6 +33,9 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use('/api/v1', router);
 
+app.get('/api/v1/hello', (req, res) => {
+    res.status(200).send({ "message": "Hello!, welcome to node image resize with jwt project." });
+});
 
 app.use((err, req, res, next) => {
     console.error(err.stack)
