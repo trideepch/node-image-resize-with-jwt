@@ -37,6 +37,26 @@ app.get('/api/v1/hello', (req, res) => {
     res.status(200).send({ "message": "Hello!, welcome to node image resize with jwt project." });
 });
 
+app.get('/api/v1/method', (req, res) => {
+    res.status(200).send({ "message": "Get request" });
+});
+
+app.post('/api/v1/method', (req, res) => {
+    res.status(200).send({ "message": "Post request" });
+});
+
+app.put('/api/v1/method', (req, res) => {
+    res.status(200).send({ "message": "Put request" });
+});
+
+app.patch('/api/v1/method', (req, res) => {
+    res.status(200).send({ "message": "Patch request" });
+});
+
+app.delete('/api/v1/method', (req, res) => {
+    res.status(200).send({ "message": "Delete request" });
+});
+
 app.use((err, req, res, next) => {
     console.error(err.stack)
     res.status(500).send({ status: 500, error: 'Something broke!' });
