@@ -1,4 +1,5 @@
-# node-image-resize-with-jwt
+# node-image-resize-with-jwt [![CircleCI](https://dl.circleci.com/status-badge/img/gh/trideepch/node-image-resize-with-jwt/tree/master.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/trideepch/node-image-resize-with-jwt/tree/master)
+
 nodejs image resize app with **jwt, mocha, chai, swagger**
 
 ## Description
