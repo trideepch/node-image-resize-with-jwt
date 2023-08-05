@@ -5,7 +5,7 @@ nodejs image resize app with **jwt, mocha, chai, swagger**
 This is a nodejs application which will add users and validate users using jwt. Also, upload images for user and resize it to 200x200 to create a thumbnail.
 
 #### built on node
-`node v12.14.1`
+`node v18.17.0`
 
 #### postman collection
 `NodeJS Image Upload with JWT.postman_collection.json`
